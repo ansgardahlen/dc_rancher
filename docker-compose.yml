@@ -1,16 +1,16 @@
 version: '2.1'
 services:
-  rancher-server:
+  rancher:
     restart: always
     image: rancher/server
     container_name: dc_rancher
     environment:
       - VIRTUAL_HOST=${PUBLIC_FQDN}
-      - VIRTUAL_PORT=${HTTP_PORT:-80}
+      - VIRTUAL_PORT=${HTTP_PORT:-8080}
       - LETSENCRYPT_HOST=${PUBLIC_FQDN}
       - LETSENCRYPT_EMAIL=${ADMIN_MAIL}
 #    ports:
-#     - "${HTTP_BIND:-0.0.0.0}:${HTTP_PORT:-80}:${HTTP_PORT:-80}"
+#     - "${HTTP_BIND:-0.0.0.0}:${HTTP_PORT:-8080}:${HTTP_PORT:-8080}"
     labels:
       io.rancher.container.pull_image: always
       io.rancher.scheduler.affinity:host_label_soft: ${PUBLIC_FQDN}
