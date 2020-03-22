@@ -25,7 +25,7 @@ if [ -z "$TZ" ]; then
   read -p "Timezone: " -ei "Europe/Berlin" TZ
 fi
 
-HTTP_PORT=3000
+HTTP_PORT=80
 
 cat << EOF > rancher.conf
 # ------------------------------
