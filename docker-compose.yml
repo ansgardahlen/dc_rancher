@@ -1,0 +1,18 @@
+version: '2'
+services:
+  rancher-server:
+    restart: always
+    image: rancher/server
+    container_name: rancher-server
+    environment:
+      - VIRTUAL_HOST=${PUBLIC_FQDN}
+      - VIRTUAL_PORT=${HTTP_PORT:-3000}
+      - LETSENCRYPT_HOST=${PUBLIC_FQDN}
+      - LETSENCRYPT_EMAIL=${ADMIN_MAIL}
+#    ports:
+#     - "${HTTP_BIND:-0.0.0.0}:${HTTP_PORT:-8080}:${HTTP_PORT:-8080}"
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:host_label_soft: ${PUBLIC_FQDN}
+    volumes:
+      - ./data/rancher/mysql:/var/lib/mysql:rw
