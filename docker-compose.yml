@@ -3,7 +3,7 @@ services:
   rancher-server:
     restart: always
     image: rancher/server
-    container_name: rancher-server
+    container_name: dc_rancher
     environment:
       - VIRTUAL_HOST=${PUBLIC_FQDN}
       - VIRTUAL_PORT=${HTTP_PORT:-3000}
